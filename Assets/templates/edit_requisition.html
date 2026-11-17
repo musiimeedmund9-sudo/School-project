@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags  %}
+
+{% block title %}Edit Requisition{% endblock %}
+
+{% block content %}
+<div class="card narrow">
+    <h2>Edit Requisition</h2>
+
+    {% if message %}
+        <p class="msg">{{ message }}</p>
+    {% endif %}
+
+    <form method="POST">
+        {% csrf_token %}
+        {{ form|crispy }}
+        <button type="submit">Save Changes</button>
+        <a class="btn back" href="{% url 'add_requisition_page' %}">Back</a>
+    </form>
+</div>
+{% endblock %}

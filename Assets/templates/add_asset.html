@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags  %}
+
+{% block title %}Add Asset{% endblock %}
+
+{% block content %}
+<div class="card">
+    <h2>Add Asset</h2>
+
+    {% if msg %}
+        <p class="msg">{{ msg }}</p>
+    {% endif %}
+
+    <form method="POST">
+        {% csrf_token %}
+        {{ form|crispy }}
+        <button type="submit">Save</button>
+    </form>
+</div>
+
+<div class="card">
+    <h2>Assets</h2>
+
+    <table>
+        <tr>
+            <th>Asset name</th>
+            <th>Category</th>
+            <th>Brand</th>
+            <th>Stock quantity</th>
+            <th>Re-order level</th>
+            <th>Store</th>
+            <th>Actions</th>
+        </tr>
+
+        {% for asset in assets %}
+        <tr>
+            <td>{{ asset.asset_name }}</td>
+            <td>{{ asset.category }}</td>
+            <td>{{ asset.brand }}</td>
+            <td>{{ asset.stock_quantity }}</td>
+            <td>{{ asset.re_order_level }}</td>
+            <td>{{ asset.store.store_name|default:"-" }}</td>
+            <td>
+                <a class="btn edit" href="{% url 'edit_asset_page' asset.id %}">Edit</a>
+                <a class="btn delete" href="{% url 'delete_asset_page' asset.id %}" onclick="return confirm('Delete this asset?')">Delete</a>
+            </td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="7">No assets added yet.</td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+{% endblock %}

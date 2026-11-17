@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags  %}
+
+{% block title %}Add Stock{% endblock %}
+
+{% block content %}
+<div class="card">
+    <h2>Add Stock</h2>
+
+    {% if msg %}
+        <p class="msg">{{ msg }}</p>
+    {% endif %}
+
+    <form method="POST">
+        {% csrf_token %}
+        {{ form|crispy }}
+        <button type="submit">Save</button>
+    </form>
+</div>
+
+<div class="card">
+    <h2>Stock</h2>
+
+    <table>
+        <tr>
+            <th>Stock ID</th>
+            <th>Date</th>
+            <th>Supplier</th>
+            <th>Total amount</th>
+            <th>Received by</th>
+            <th>Actions</th>
+        </tr>
+
+        {% for stock in stocks %}
+        <tr>
+            <td>{{ stock.id }}</td>
+            <td>{{ stock.stock_date }}</td>
+            <td>{{ stock.supplier }}</td>
+            <td>{{ stock.total_amount }}</td>
+            <td>{{ stock.received_by }}</td>
+            <td>
+                <a class="btn edit" href="{% url 'edit_stock_page' stock.id %}">Edit</a>
+                <a class="btn delete" href="{% url 'delete_stock_page' stock.id %}" onclick="return confirm('Delete this stock?')">Delete</a>
+            </td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="6">No stock added yet.</td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+{% endblock %}

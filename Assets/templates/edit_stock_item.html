@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags  %}
+
+{% block title %}Edit Stock Item{% endblock %}
+
+{% block content %}
+<div class="card narrow">
+    <h2>Edit Stock Item</h2>
+
+    {% if message %}
+        <p class="msg">{{ message }}</p>
+    {% endif %}
+
+    <form method="POST">
+        {% csrf_token %}
+        {{ form|crispy}}
+        <button type="submit">Save Changes</button>
+        <a class="btn back" href="{% url 'add_stock_item_page' %}">Back</a>
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags  %}
+
+{% block title %}Add Store{% endblock %}
+
+{% block content %}
+<div class="card">
+    <h2>Add Store</h2>
+
+    {% if msg %}
+        <p class="msg">{{ msg }}</p>
+    {% endif %}
+
+    <form method="POST">
+        {% csrf_token %}
+        {{ form|crispy}}
+        <button type="submit">Save</button>
+    </form>
+</div>
+
+<div class="card">
+    <h2>Stores</h2>
+
+    <table>
+        <tr>
+            <th>Store name</th>
+            <th>Location</th>
+            <th>Employee</th>
+            <th>Actions</th>
+        </tr>
+
+        {% for store in stores %}
+        <tr>
+            <td>{{ store.store_name }}</td>
+            <td>{{ store.store_location }}</td>
+            <td>{{ store.employee.employee_fname }} {{ store.employee.employee_lname }}</td>
+            <td>
+                <a class="btn edit" href="{% url 'edit_store_page' store.id %}">Edit</a>
+                <a class="btn delete" href="{% url 'delete_store_page' store.id %}" onclick="return confirm('Delete this store?')">Delete</a>
+            </td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="4">No stores added yet.</td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+{% endblock %}

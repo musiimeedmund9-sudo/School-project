@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags  %}
+
+{% block title %}Add Employee{% endblock %}
+
+{% block content %}
+<div class="card">
+    <h2>Add Employee</h2>
+
+    {% if msg %}
+        <p class="msg">{{ msg }}</p>
+    {% endif %}
+
+    <form method="POST">
+        {% csrf_token %}
+        {{ form|crispy}}
+        <button type="submit">Save</button>
+    </form>
+</div>
+
+<div class="card">
+    <h2>Employees</h2>
+
+    <table>
+        <tr>
+            <th>First name</th>
+            <th>Last name</th>
+            <th>Date of birth</th>
+            <th>Gender</th>
+            <th>Phone</th>
+            <th>Hire date</th>
+            <th>Position</th>
+            <th>Department</th>
+            <th>Actions</th>
+        </tr>
+
+        {% for employee in employees %}
+        <tr>
+            <td>{{ employee.employee_fname }}</td>
+            <td>{{ employee.employee_lname }}</td>
+            <td>{{ employee.date_of_birth }}</td>
+            <td>{{ employee.get_gender_display }}</td>
+            <td>{{ employee.phone }}</td>
+            <td>{{ employee.hire_date }}</td>
+            <td>{{ employee.position }}</td>
+            <td>{{ employee.department }}</td>
+            <td>
+                <a class="btn edit" href="{% url 'edit_employee_page' employee.id %}">Edit</a>
+                <a class="btn delete" href="{% url 'delete_employee_page' employee.id %}" onclick="return confirm('Delete this employee?')">Delete</a>
+            </td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="9">No employees added yet.</td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+{% endblock %}
