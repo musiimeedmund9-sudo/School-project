@@ -430,6 +430,7 @@ def sign_up_view(request ):
         sign_up_form =UserCreationForm(request.POST)
         if sign_up_form .is_valid ():
             sign_up_form.save()
+            return redirect('login') 
             message ='User created sucessfully'
 
         else:

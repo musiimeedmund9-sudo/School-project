@@ -139,3 +139,5 @@ MAILERS = {
         'BACKEND': 'django.core.mail.backends.console.EmailBackend',
     },
 }
+LOGIN_REDIRECT_URL = 'add_employee_page'
+LOGOUT_REDIRECT_URL = 'login'
