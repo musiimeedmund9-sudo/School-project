@@ -1,0 +1,24 @@
+﻿{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Assets Management System{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'Assets/css/style.css' %}">
+</head>
+<body class="auth-body">
+    <div class="auth-card">
+        <div class="auth-logo">AMS</div>
+        <h1>Assets Management System</h1>
+        <p class="auth-sub">{% block subtitle %}{% endblock %}</p>
+
+        <div class="auth-tabs">
+            <a href="{% url 'login' %}" class="{% block login_active %}{% endblock %}">Log in</a>
+            <a href="{% url 'sign_up_page' %}" class="{% block signup_active %}{% endblock %}">Sign up</a>
+        </div>
+
+        {% block content %}{% endblock %}
+    </div>
+</body>
+</html>

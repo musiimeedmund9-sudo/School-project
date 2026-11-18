@@ -1,24 +1,27 @@
 
-{% extends 'base.html' %}
-{% load crispy_forms_tags  %}
-
-
-{% block title %}Sign Up{% endblock %}
+{% extends 'base_auth.html' %}
+{% block title %}Sign up{% endblock %}
+{% block subtitle %}Create your account{% endblock %}
+{% block signup_active %}active{% endblock %}
 
 {% block content %}
-<div class="card narrow">
-    <h2>Sign Up</h2>
+<form method="POST">
+    {% csrf_token %}
+    {{ form.non_field_errors }}
 
-    {% if msg %}
-        <p class="msg">{{ msg }}</p>
-    {% endif %}
+    <label for="{{ form.username.id_for_label }}">Username</label>
+    {{ form.username }}
+    {{ form.username.errors }}
 
-    <form method="POST">
-        {% csrf_token %}
-        {{ form|crispy }}
-        <button type="submit">Sign Up</button>
-    </form>
+    <label for="{{ form.password1.id_for_label }}">Password</label>
+    {{ form.password1 }}
+    {{ form.password1.errors }}
 
-    <p>Already have an account? <a href="{% url 'login' %}">Login</a></p>
-</div>
+    <label for="{{ form.password2.id_for_label }}">Confirm password</label>
+    {{ form.password2 }}
+    {{ form.password2.errors }}
+
+    <button type="submit">Sign up</button>
+</form>
+<p class="auth-foot">Already have an account? <a href="{% url 'login' %}">Log in</a></p>
 {% endblock %}

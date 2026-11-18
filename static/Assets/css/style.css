@@ -193,3 +193,118 @@ textarea {
     border: 1px solid #94a3b8;
     background: #fff;
 }
+
+/* ---------- Login / Sign up page ---------- */
+.auth-body {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 55%, #60a5fa 100%);
+}
+
+.auth-card {
+    width: 100%;
+    max-width: 420px;
+    background: #fff;
+    padding: 36px 32px;
+    border-radius: 18px;
+    box-shadow: 0 20px 50px rgba(0,0,0,.3);
+    text-align: center;
+}
+
+.auth-logo {
+    width: 56px;
+    height: 56px;
+    line-height: 56px;
+    margin: 0 auto 14px;
+    text-align: center;
+    font-weight: 700;
+    font-size: 1.1rem;
+    letter-spacing: 1px;
+    color: #fff;
+    background: linear-gradient(135deg, #1e3a8a, #2563eb);
+    border-radius: 14px;
+    box-shadow: 0 6px 16px rgba(37,99,235,.4);
+}
+
+.auth-card h1 {
+    margin: 0;
+    font-size: 1.4rem;
+    color: #1e3a8a;
+    text-align: center;
+}
+
+.auth-sub {
+    margin: 6px 0 22px;
+    color: #6b7280;
+    font-size: .92rem;
+}
+
+/* Log in / Sign up tabs */
+.auth-tabs {
+    display: flex;
+    background: #e5e7eb;
+    border-radius: 10px;
+    padding: 4px;
+    margin-bottom: 24px;
+}
+
+.auth-tabs a {
+    flex: 1;
+    text-align: center;
+    padding: 10px;
+    border-radius: 8px;
+    text-decoration: none;
+    color: #6b7280;
+    font-weight: 600;
+    transition: background .2s, color .2s;
+}
+
+.auth-tabs a.active {
+    background: #fff;
+    color: #1e3a8a;
+    box-shadow: 0 1px 5px rgba(0,0,0,.15);
+}
+
+/* Form inside the card: undo the big card styling */
+.auth-card form {
+    background: none;
+    box-shadow: none;
+    padding: 0;
+    margin: 0;
+    max-width: none;
+    text-align: left;
+}
+
+.auth-card label {
+    margin-top: 14px;
+    font-size: .85rem;
+}
+
+.auth-card input {
+    margin-bottom: 2px;
+}
+
+.auth-card button {
+    margin-top: 24px;
+}
+
+.auth-card .errorlist {
+    margin: 6px 0 0;
+}
+
+.auth-foot {
+    margin: 20px 0 0;
+    font-size: .9rem;
+    color: #6b7280;
+}
+
+.auth-foot a {
+    color: #2563eb;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.auth-foot a:hover { text-decoration: underline; }
