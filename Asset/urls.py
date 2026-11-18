@@ -28,15 +28,13 @@ from Assets.views import add_requisition_item_view,edit_requisition_item_view,de
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-     path('',add_employee_view,name='employee_home_page'),
-    
-    path('sign_up',sign_up_view,name='sign_up_page'),
-    path('accounts',include('django.contrib.auth.urls')),
-    path('sign_up',sign_up_view,name='sign_up_page'),
+    path('', sign_up_view, name='sign_up_page'),
 
-    path('add_employee/',add_employee_view,name="add_employee_page"),
-    path('edit_employee/<int:employee_id>/',edit_employee_view,name="edit_employee_page"),
-    path('delete_employee/<int:employee_id>/',delete_employee_view,name="delete_employee_page"),
+    path('accounts/', include('django.contrib.auth.urls')),
+
+    path('add_employee/', add_employee_view, name="add_employee_page"),
+    path('edit_employee/<int:employee_id>/', edit_employee_view, name="edit_employee_page"),
+    path('delete_employee/<int:employee_id>/', delete_employee_view, name="delete_employee_page"),
 
     path('add_store/',add_store_view,name="add_store_page"),
     path('edit_store/<int:store_id>/',edit_store_view,name="edit_store_page"),
